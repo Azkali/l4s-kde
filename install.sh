@@ -1,11 +1,13 @@
 #!/bin/bash
+set -x
 
 SRC_DIR=$(cd $(dirname $0) && pwd)
 DEST_DIR=${DEST_DIR:-"/"}
 ROOT_UID=0
+FORCE_SYSTEM=${FORCE_SYSTEM:-0}
 
 # Destination directory
-if [ "$UID" -eq "$ROOT_UID" ]; then
+if [ "$UID" -eq "$ROOT_UID" ] || [ $FORCE_SYSTEM -eq 1 ]; then
   AURORAE_DIR="${DEST_DIR}/usr/share/aurorae/themes"
   SCHEMES_DIR="${DEST_DIR}/usr/share/color-schemes"
   PLASMA_DIR="${DEST_DIR}/usr/share/plasma/desktoptheme"
